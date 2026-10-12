@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>News &amp; Social Media Analytics Engine</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="#top"><span class="logo">N</span> Analytics Engine</a>
+    <nav>
+      <a href="#overview">Overview</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#analyze">Analyze</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <p class="eyebrow">Data Structures and Algorithms-3 · 25CS2103E</p>
+      <h1>News &amp; Social Media<br /><span>Analytics Engine</span></h1>
+      <p class="lead">Turn continuously generated online content into clear, actionable insight — sentiment, keywords,
+        topics and emerging trends in one place.</p>
+      <div class="pipeline">
+        <span>COLLECT</span><i>→</i><span>PROCESS</span><i>→</i><span>ANALYZE</span><i>→</i><span>PRESENT</span>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="#dashboard">View dashboard</a>
+        <a class="btn" href="#analyze">Analyze your own text</a>
+      </div>
+    </section>
+
+    <!-- OVERVIEW -->
+    <section id="overview" class="section">
+      <h2>What it does</h2>
+      <div class="grid g3">
+        <div class="card"><div class="num">01</div><h3>Large volumes</h3><p>Online information keeps arriving from news, social posts, comments and opinions.</p></div>
+        <div class="card"><div class="num">02</div><h3>Unstructured content</h3><p>Raw text is tokenised and cleaned so it can be analysed automatically.</p></div>
+        <div class="card"><div class="num">03</div><h3>Scattered meaning</h3><p>Sentiment, topics and trends are extracted and visualised in a single dashboard.</p></div>
+      </div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="section">
+      <div class="row-between">
+        <div>
+          <h2>Analytics dashboard</h2>
+          <p class="muted" id="datasetLabel">Loading demo dataset…</p>
+        </div>
+        <button class="btn" id="reloadSample">Reload demo data</button>
+      </div>
+
+      <div class="kpis" id="kpis"></div>
+
+      <div class="grid g2">
+        <div class="card"><h3>Sentiment split</h3><div id="donut" class="donut-wrap"></div></div>
+        <div class="card"><h3>Topic classification</h3><div id="topics"></div></div>
+      </div>
+
+      <div class="card wide">
+        <h3>Topic volume over time</h3>
+        <div id="lineChart"></div>
+        <div id="legend" class="legend"></div>
+      </div>
+
+      <div class="grid g2">
+        <div class="card"><h3>Important keywords</h3><p class="muted small">Size = frequency · colour = average sentiment</p><div id="cloud" class="cloud"></div></div>
+        <div class="card">
+          <h3>Emerging discussions</h3>
+          <p class="muted small">Terms growing fastest: recent half vs. earlier half of the period</p>
+          <div id="emerging"></div>
+          <h3 class="sub">Trending topics</h3>
+          <div id="trending"></div>
+        </div>
+      </div>
+
+      <div class="card wide">
+        <div class="row-between">
+          <h3>Analysed posts</h3>
+          <div class="filters" id="filters">
+            <button data-f="all" class="on">All</button>
+            <button data-f="positive">Positive</button>
+            <button data-f="negative">Negative</button>
+            <button data-f="neutral">Neutral</button>
+          </div>
+        </div>
+        <div class="table-wrap"><table id="feed"></table></div>
+      </div>
+    </section>
+
+    <!-- ANALYZE -->
+    <section id="analyze" class="section">
+      <h2>Analyze your own content</h2>
+      <p class="muted">Paste news headlines, tweets or comments — <b>one per line</b>. Optionally add a date and source to
+        enable trend detection:</p>
+      <pre class="code">2026-10-11 | Twitter/X | I love the new update, it's amazing!
+2026-10-11 | News | Government announces new policy on AI regulation
+Plain lines without a date also work.</pre>
+      <textarea id="input" rows="9" placeholder="Paste text here…"></textarea>
+      <div class="cta left">
+        <button class="btn primary" id="runBtn">Analyze</button>
+        <button class="btn" id="fillBtn">Load sample text</button>
+        <label class="btn" for="file">Upload .txt / .csv</label>
+        <input type="file" id="file" accept=".txt,.csv" hidden />
+        <button class="btn ghost" id="clearBtn">Clear</button>
+        <span id="status" class="muted"></span>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <h2>Objectives</h2>
+      <div class="grid g5">
+        <div class="card mini"><b>Collect</b><p>Gather news and social media information</p></div>
+        <div class="card mini"><b>Process</b><p>Convert unstructured content into meaningful insights</p></div>
+        <div class="card mini"><b>Analyze</b><p>Understand sentiment, keywords and topics</p></div>
+        <div class="card mini"><b>Identify</b><p>Surface trends and emerging discussions</p></div>
+        <div class="card mini"><b>Present</b><p>Show results through visualizations</p></div>
+      </div>
+
+      <h2>Applications</h2>
+      <div class="grid g3">
+        <div class="card"><h3>Businesses</h3><ul><li>Analyze customer opinions</li><li>Identify market trends</li><li>Understand changing consumer preferences</li></ul></div>
+        <div class="card"><h3>Researchers</h3><ul><li>Monitor public sentiment</li><li>Track important events</li><li>Identify emerging topics</li></ul></div>
+        <div class="card"><h3>Media organizations</h3><ul><li>Monitor public sentiment</li><li>Track important events</li><li>Identify emerging topics</li></ul></div>
+      </div>
+
+      <h2>Data structures &amp; algorithms used</h2>
+      <div class="grid g2">
+        <div class="card"><ul>
+          <li><b>Hash maps</b> (dict / Counter) — word counts, sentiment lexicon, topic tables</li>
+          <li><b>Sets</b> — O(1) stop-word and vocabulary checks</li>
+          <li><b>Min/Max heap</b> (heapq) — Top-K keywords and emerging terms</li>
+        </ul></div>
+        <div class="card"><ul>
+          <li><b>Lexicon-based sentiment</b> with negation and intensifier handling</li>
+          <li><b>Two-window comparison</b> — earlier vs. recent period for trend detection</li>
+          <li><b>Topic scoring</b> — keyword-overlap classification</li>
+        </ul></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>News &amp; Social Media Analytics Engine · A.Y. 2026–2027 · Team 35 · Section 12</div>
+    <div class="muted">I. Nandini (2520090230) · M. Sameeksha (2520090229) · Guide: Ms. K. Chandusha, Asst. Professor, CSIT</div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
